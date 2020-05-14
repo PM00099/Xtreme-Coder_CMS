@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Xtreme-Coder | Blogs {% endblock title %}
+{% block blogactive %} active {% endblock blogactive %}
+{% block body %}
+
+  {% block js %}
+  <script>
+  let previews = document.getElementBuClassName('preview');
+  Array.from(previews).forEach((element)=>{
+      element.innerHTML = element.innerText;
+  })
+  </script>
+  {% endblock js %}
+  <div>
+<div class="carousel-inner">
+    <div class="carousel-item active">
+      <img style="opacity:0.7;height:385px;" src="{% static 'img/bg7.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+</div>
+<br>
+<div class="container my-3">
+    <h1 style="font-family: 'Montserrat', sans-serif;">Coding Articles by Xtreme-Coder:</h1>
+   {% for post in allPosts %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} <span class="badge badge-pill badge-success" style="font-size:15px">{{post.views}} views</span>  <span class="badge badge-pill badge-warning" style="font-size:15px">{{post.rating}} ratings</span></strong>
+            <h3 class="mb-0"><a class="text-dark" href="/blog/{{post.slug}}">{{post.title}}</a></h3>
+            <div class="mb-1 text-muted">{{post.datetime}}</div>
+            <p class="card-text mb-auto"><div class="preview">{{post.content|safe|truncatechars:250}}</div></p>
+            <div class="my-2">
+            <a href="/blog/{{post.slug}}" role="button"class="btn btn-primary">Continue reading</a>
+            </div>
+        </div>
+    </div>
+        {% endfor %}
+</div>
+<a href="" style="display:inline"><i href="#car" class='fas fa-angle-double-up sticky-top' style='font-size:48px;color:black;margin:650px;margin-left: 1366px;position:fixed;'></i></a>
+{% endblock body %}

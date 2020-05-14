@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Xtreme-Coder | Home {% endblock title %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block body %}
+<section id="car">
+<div class="mb-2">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img style="opacity:0.5;width:100%;height:90%;" src="{% static "img/bg5.jpg" %}" class="d-block" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+        <h1>Xtreme Coder</h1>
+        <h5>Xtreme Coder is a great place to read and learn from a wide range of authors. It’s not muddied up by ads. It’s not fake news. It feels like one of the few pure places to go online.</h5>
+      <a href="" style="display:inline"><i href="#b" class='fas fa-angle-double-down sticky-top' style='font-size:48px;color:black;padding-bottom: 350px;'></i></a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img style="opacity:0.5;width:100%;height:90%;" src="{% static "img/bg2.jpg" %}" class="d-block opacity" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>Xtreme Coder</h1>
+         <h5>Xtreme Coder is truly where ideas are born, shared, and spread.</h5>       
+          <a href="" style="display:inline"><i href="#b" class='fas fa-angle-double-down sticky-top' style='font-size:48px;color:black;padding-bottom: 350px;'></i></a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img style="opacity:0.5;width:100%;height:90%;" src="{% static "img/bg7.jpg" %}" class="d-block opacity" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>Xtreme Coder</h1>
+         <h5>Create a unique and beautiful blog. It’s easy and free.</h5>     
+          <a href="" style="display:inline"><i href="#b" class='fas fa-angle-double-down sticky-top' style='font-size:48px;color:black;padding-bottom: 350px;'></i></a>
+      </div>
+    </div>
+ <a href="" style="display:inline"><i href="#car" class='fas fa-angle-double-up sticky-top' style='font-size:48px;color:black;margin:650px;margin-left: 1366px;position:fixed;'></i></a>
+  </div>
+</div>
+</div>
+</section>
+<section id="b">
+<div class="container my-4" >
+<h2 style="font-family: 'Montserrat', sans-serif;">Popular BlogPost:</h2>
+{% for post in allPosts %}
+<div class="row no-gutters border rounded overflow-hidden flex-md-row my-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} <span class="badge badge-pill badge-success" style="font-size:15px">{{post.views}} views</span>  <span class="badge badge-pill badge-warning" style="font-size:15px">{{post.rating}} ratings</span></strong>
+          <h3 class="mb-0">{{post.title}}</h3>
+          <div class="mb-1 text-muted">{{post.datetime}}</div>
+          <p class="card-text mb-auto">{{post.content|safe | truncatechars:150}}</p>
+         <div class="my-2">
+            <a href="/blog/{{post.slug}}" role="button"class="btn btn-primary">Continue reading</a>
+            </div>
+        </div>
+      </div>
+         {% endfor %}
+</div>
+</section>
+{% endblock body %}

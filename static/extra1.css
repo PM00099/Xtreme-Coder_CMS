@@ -1,0 +1,43 @@
+body::-webkit-scrollbar{
+    display: none;
+}
+.logo{
+    height: 40px;
+    width: 50px;
+}
+
+nav a b { 
+    margin-left: 2px;
+}
+
+.carousel-item h1{
+    font-size: 6.5rem; 
+    color:black; 
+    opacity:0.9; 
+    font-family: 'Montserrat', sans-serif;
+}
+.carousel-item h5{
+    color:black; 
+    opacity:0.9;
+    font-family: 'Montserrat', sans-serif; 
+    margin-bottom: 7.5rem;
+    line-height: 1.5rem;
+}
+
+#navg{
+    background-color: grey;
+    opacity: 0.9;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;;
+}
+
+.alert{
+    margin-bottom: 0rem;
+}
+
+i .fas{
+    margin-bottom:10px;
+    font-size:48px;
+    color:black
+}
+

@@ -1,0 +1,27 @@
+body #container{    
+    background: cadetblue;
+
+}
+html{    
+    background: cadetblue;
+}
+img{
+    height: 50px;
+    width: 80px;
+}
+
+#header #branding{
+    background-color: gray!important;
+}
+#header #branding h1{
+    color: wheat;
+}
+#content h1{
+    font-size: 23px !important;
+}
+#header #branding li a{
+    font-size: 1.5rem;
+    color: cadetblue;
+    cursor: pointer;
+}
+

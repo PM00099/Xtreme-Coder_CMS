@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Xtreme-Coder | About Us {% endblock title %}
+{% block aboutactive %} active {% endblock aboutactive %}
+{% block body %}
+<div>
+<div class="carousel-inner">
+    <div class="carousel-item active">
+      <img style="opacity:0.5;height:385px;" src="{% static 'img/bg4.jpg' %}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1  style="font-size: 4rem; color:black; opacity:0.9; margin-bottom: 9.5rem; font-family: 'Montserrat', sans-serif;" >About Us</h1>
+      </div>
+    </div>
+</div>
+<br>
+<div class="container my-2">
+
+    <h3>For People Who Make Websites</h3>
+<p>A List Apart (ISSN: 1534-0295) explores the design, development, and meaning of web content, with a special focus on web standards and best practices.
+
+We began as a mailing list in 1997 and launched this website in 1998. You can visit the ghosts of ALA past by reading our history. See our Masthead to meet the current crew.</p>
+
+<h3>Our content and code</h3>
+<p>Our content is protected by copyright shared jointly by the magazine and its writers, but code used in articles is freely available to all. We also welcome translation. See Permissions & Copyright for details.</p>
+
+<h3>Write for us</h3>
+<p>Yes, you. We welcome thoughtful submissions from all kinds of web professionals: designers, developers, architects, strategists, writers, project managers, and assorted specialists. As long as you’ve got a big idea and an interesting voice, we want to hear from you. Visit the Write for Us page for guidelines.</p>
+
+<h3>Talk to us</h3>
+<p>We love to hear your opinions, but we can’t answer all your email. Use the comments section on each article, or tweet us @alistapart to provide feedback on our content.    </p>
+    </div>
+{% endblock body %}

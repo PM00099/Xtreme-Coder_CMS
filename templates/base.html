@@ -1,0 +1,228 @@
+{% load static %}
+{% load socialaccount %}
+{% comment %} {% providers_media_js %} {% endcomment %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="{% static "img/favicon.ico" %}" type="image/icon" sizes="16x16">
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'extra1.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title>{% block title %} {% endblock title %}</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="navg">
+    <a href="/"><img src="{% static 'img/favicon.ico' %}" class="logo"></img></a>&nbsp 
+    <a class="navbar-brand" href="/"><b>Xtreme-Coder</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" id="navi">
+        <li class="nav-item {% block homeactive %} {% endblock homeactive %}">
+          <a class="nav-link" href="/"><b>Home</b></a>
+        </li>
+        
+        <li class="nav-item {% block blogactive %} {% endblock blogactive %}">
+          <a class="nav-link" href="/blog"><b>Blogs</b></a>
+        </li>
+        <li class="nav-item {% block contactactive %} {% endblock contactactive %}">
+          <a class="nav-link" href="/contact"><b>Contact Us</b></a>
+        </li>
+        <li class="nav-item {% block aboutactive %} {% endblock aboutactive %}">
+          <a class="nav-link" href="/about"><b>About Us</b></a>
+        </li>
+        
+    
+      </ul>
+      <form method="get" action="/search" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query"
+          id="query">
+        <button class="btn btn-outline-primary mr-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      {% if user.is_authenticated %}
+      <img src="https://img.icons8.com/cotton/30/000000/user-male.png"> <b style="color:lightblue;" >Welcome {{ request.user }}</b>
+      <a type="submit" class="btn btn-primary mx-2 my-sm-0" href="/logout">Log out</a>
+      {% else %}
+
+      <!-- Button to trigger  login modal -->
+      <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#loginModal">
+        Sign in
+      </button>
+      <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#SocialModal">
+        Social Login
+      </button>
+      
+      <!-- Button to trigger sign up modal -->
+      <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#signupModal">
+        Sign up
+      </button>
+      {% endif %}
+    </div>
+  </nav>
+  {% for message in messages %}
+  <div style="margin-bottom: 0rem;" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  
+<!--Social Modal -->
+  <div class="modal fade" id="SocialModal" tabindex="-1" role="dialog" aria-labelledby="SocialModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="SocialModal">Join Xtreme-Coder.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+    <div class="btn-group-vertical">
+     <a href="{% provider_login_url "google" %}"><button type="button" class="btn btn-primary"><img style="height:20px" src={% static 'img/g.png' %}></img>  Sign in with Google</button></a>
+     <br>
+     <br>
+     <a href="{% url "social:begin" "github" %}"><button type="button" class="btn btn-primary"><img style="height:20px" src={% static 'img/git.png' %}></img>   Signin with Github </button></a>
+     <br>
+     <br>
+     <a href="{% url "social:begin" "linkedin-oauth2" %}"><button type="button" class="btn btn-primary"><img style="height:20px" src={% static 'img/link.png' %}></img>  Signin with Linkedin </button></a>
+</div>
+</div>
+</div>
+</div>
+
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Sign Up Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModal">Join Xtreme-Coder.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/signup" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">User Name</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your first name"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter your Last name"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your valid email"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="pass1">Password</label>
+              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Enter your Password"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="pass2"> Confirm Password</label>
+              <input type="password" class="form-control" id="pass2" name="pass2"
+                placeholder="Enter your Confirm Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary my-2">Sign up</button>
+            
+            <p><b>Already have an account?</b></p>  <span><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#loginModal">Sign in</span></button>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModal">Welcome back.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form action="/login" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="loginusername">User Name</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername"
+                placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group">
+              <label for="loginpassword">Password</label>
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                placeholder="Enter your Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary my-2">Login</button>
+            
+            <p><b>No account? </b></p>  <span><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#signupModal">Create One</span></button>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  {% block body %}
+  {% endblock body %}
+  {% block js %}
+  {% endblock js %}
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
