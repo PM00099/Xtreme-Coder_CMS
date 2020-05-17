@@ -1,6 +1,5 @@
 Django
 social-auth-app-django
-django_extensions
 allauth
 django-cms
 gunicorn
