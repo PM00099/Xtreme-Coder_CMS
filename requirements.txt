@@ -1,4 +1,5 @@
 Django
 social-auth-app-django
+django-allauth
 django-cms
 gunicorn
