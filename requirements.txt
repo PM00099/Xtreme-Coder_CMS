@@ -1,5 +1,5 @@
 Django
-social_django
+social-auth-app-django
 django_extensions
 allauth
 django-cms
