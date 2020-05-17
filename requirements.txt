@@ -3,6 +3,4 @@ social_django
 django_extensions
 allauth
 django-cms
-
-
-python manage.py runserver_plus --cert certname
+gunicorn
